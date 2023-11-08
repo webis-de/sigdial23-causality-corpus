@@ -1,0 +1,481 @@
+<meta charset="utf-8" />
+<title></title>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+    body {
+        font: normal 15px "Times New Roman", Times, serif
+    }
+
+        {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        list-style: none;
+    }
+
+    p.border {
+        border: 2px black;
+    }
+
+    p.outset {
+        border-style: outset;
+    }
+
+    .row {
+        border: 1px dashed #777 !important;
+        padding: 0 8px 20px 8px;
+        margin-bottom: 20px;
+    }
+
+    .close {
+        position: relative;
+        top: 8px;
+        right: 2px;
+        cursor: pointer;
+        opacity: .8;
+        
+    }
+
+    .close_img{
+        width: 15px;
+    }
+
+    .tab button {
+        background-color: LightSlateGrey;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 20px 20px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+    .tab button:hover {
+        background-color: #708090;
+    }
+
+    .button {
+        background-color: #708090;
+        border: none;
+        color: white;
+        padding: 10px 22px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        transition: 0.5s;
+        outline: none;
+    }
+
+    input[type=text1] {
+        width: 55%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        transition: 0.5s;
+        outline: none;
+    }
+
+    input[type=text]:focus {
+        border: 3px solid #555;
+    }
+
+    body {
+        width: 100%;
+        float: left;
+    }
+
+    .class1 {
+        width: 30%;
+        float: left;
+        padding: 8px;
+    }
+
+    .class2 {
+        width: 40%;
+        float: left;
+        padding: 8px;
+    }
+
+    .class3 {
+        width: 30%;
+        float: left;
+        padding: 8px;
+    }
+
+    .class4 {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+
+    p {
+        padding-top: 10px;
+        text-align: center;
+    }
+
+    .leftText{
+        text-align: left;
+    }
+
+    .sentence{
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .box {
+        display: none;
+        width: 60%;
+    }
+
+    a:hover+.box,
+    .box:hover {
+        display: block;
+        position: absolute;
+        z-index: 50;
+    }
+
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+
+    .btn-add {
+        color: #212529;
+        background-color: #ffc107;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 12px !important;
+    }
+
+
+    .btn-add:active,
+    .btn-add:hover,
+    .btn-add:focus {
+        color: #212529 !important;
+        outline: none !important;
+    }
+
+    .concept_input {
+        margin-bottom: 12px !important;
+    }
+
+    .orderlist{
+        text-align: justify;
+    }
+
+    .examplecheck{
+        font-weight: 500 !important;
+    }
+
+    .embedimage{
+        max-width: 90%;
+        margin-bottom: 12px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .examplesentence{
+        font-size: 21px;
+    }
+
+    .iferror{
+        font-style: italic;
+        font-weight: 100;
+    }
+
+    .relationtype_outercontainer{
+        display: flex;
+        flex-flow: row wrap;
+        align-content: space-between;
+        justify-content: space-between;
+    }
+
+    .relationtype_container {
+        max-width: 100%;
+        display: flex;
+        flex-flow: row wrap;
+        align-content: space-between;
+        justify-content: space-between;
+    }
+
+    .relationtype_text{
+        margin-bottom: 10px;
+    }
+
+    .relationtype_item{
+        margin-bottom: 5px;
+    }
+
+</style>
+<div class="container">
+    <h2>Identify &#39;+/- Effect&#39; relation in a given sentence!</h2>
+
+    <p>&nbsp;</p>
+
+    <h4>If this is your first HIT, please, read the task description and the examples carefully before working on the
+        task!<br />
+        We will validate your submission base on our requirement.<br />
+    </h4>
+
+    <p>&nbsp;</p>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#task">Task</a></li>
+        <li><a data-toggle="tab" href="#menu1">Description</a></li>
+        <li><a data-toggle="tab" href="#menu2">Examples</a></li>
+        <li><a data-toggle="tab" href="#menu3">Comments</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="task">
+            <p class="leftText">Sentence ${Number}:</p>
+            <h3 class="sentence">${Sentence}</h3>
+            <label for="chkYes"><input id="chkYes" name="detect" onchange="addFirstRelation()" required="" type="radio"
+                    value="Relation" /> There is a &#39;+/- Effect&#39; Relation </label><br />
+            <label for="chkNo"><input id="chkNo" name="detect" onchange="removeAddRelation()" required="" type="radio"
+                    value="NoRelation" /> There is no &#39;+/- Effect&#39; Relation </label><br />
+            <label for="chkNoisy"><input id="chkNoisy" name="detect" onchange="removeAddRelation()" required=""
+                    type="radio" value="NoisySentence" /> I could not tell if there is '+/- Effect' Relation or not </label><br />
+            </br>
+            
+            <label class="iferror" for="chkError"><input name="if_error" id="chkError" type="checkbox" value="ErrorSentence"/> Please check this if you think there is some issue with the sentence, e.g. missing or wrong information, grammatical errors, etc.</label><br /> 
+            <div id="content">&nbsp;</div>
+        </div>
+        <!--script>showconcept3();</script-->
+
+        <div class="tab-pane fade" id="menu1">
+            <div style="max-width: 770px;">
+                <p class="orderlist">1.<strong> Identify</strong> if a sentence contains <span style="background-color: #FFC99A;">an effect relation</span> between pairs of <span style="background-color: #A2FF9A;">concepts</span> mentioned in the sentence. </p>
+                <p class="orderlist">&nbsp; &nbsp; &nbsp;Example:</p>
+                <p class="examplesentence" style="text-align: center;"><span style="background-color: #A2FF9A;">Social media</span> <span
+                        style="background-color: #FFC99A;">helps to nurture</span> your <span
+                        style="background-color: #A2FF9A;">relationships</span>.</p>
+                <ul>
+                    <li><i>Note:</i> Only annotate if the text <b>explicitly</b> supports the effect relation (either positive or negative) between 2 concepts, i.e. <u>not</u> using background knowledge or inference. </li>
+                </ul>
+                <p class="orderlist">2. <strong>Concept</strong>: a phrase that expresses an entity (<em>Donald Trump</em>), event
+                    (<em>smoking in streets</em>), or an abstract principle/idea (<em>society</em>).
+                <ul>
+                    <li><i>Note:</i> Demonstrative pronouns (this, that, these, those) or indefinite pronouns (something, everywhere, anybody, no-one) should <u>not</u> be considered as concrete concepts.</li>
+                </ul>
+                <ul>
+                    <li><i>Note:</i> Be careful of positions of concept 1 and concept 2.<br/>For example, in passive sentence, concept 1 comes <b>after</b> concept 2.</li>
+                </ul>
+                <p class="examplesentence" ><span style="background-color: #A2FF9A;">The greenhouse gases</span> were <span style="background-color: #FFC99A;">produced</span> by <span
+                        style="background-color: #A2FF9A;">humans</span>.</p>
+                <img class="embedimage" src="images/example_greenhouse.png" alt="greenhouse">
+                <p class="orderlist">3. <strong>Effect relation types</strong>: there could be two relation types between concept 1 and
+                    concept 2.</p>
+                <img class="embedimage" src="images/pos_relation.png" alt="pos rel">
+                <img class="embedimage" src="images/neg_relation.png" alt="neg rel">
+                <ul>
+                    <li><i>Note :</i> <b>Neutral</b> relation is <u>not</u> considered as positive or negative effect relation.<br/>For instance, you should choose <b>"No +/- Effect Relation"</b> for the following sentence:</li>
+                </ul>
+                <p class="examplesentence" >Certain financial decision will have a big impact on our work.</p>
+                <ul>
+                    <li><i>Note:</i> <b>Negated statement</b> is <u>not</u> considered as positive or negative effect relation.<br/>For example, you should also choose <b>"No +/- Effect Relation"</b> for the following sentence:</li>
+                </ul>
+                <p class="examplesentence" >Smoking doesn't cause cancer.</p>
+                <p class="orderlist">4. <strong>Complex effect relation</strong>: A compound-complex sentence may include multiple effect
+                    relations.</p>
+                <ul>
+                    <li>Parallel effect relation</li>
+                </ul>
+                <p class="examplesentence" style="text-align: center;"><span style="background-color: #A2FF9A;">Social media</span> can <span
+                        style="background-color: #FFC99A;">fuel</span> <span
+                        style="background-color: #A2FF9A;">anxiety</span> and <span
+                        style="background-color: #A2FF9A;">depression</span>.
+                </p>
+                <img class="embedimage" src="images/example_social media.png" alt="social media">
+                <img class="embedimage" src="images/example_social media_1.png" alt="social media 1">
+                <ul>
+                    <li>Opposite effect relation</li>
+                </ul>
+                <p class="examplesentence" style="text-align: center;"><span style="background-color: #A2FF9A;">Natural gas</span> will <span
+                        style="background-color: #FFC99A;">lower</span> <span style="background-color: #A2FF9A;">fossil fuel
+                        prices</span> and <span style="background-color: #FFC99A;">increase</span> <span
+                        style="background-color: #A2FF9A;">consumption</span>.
+                </p>
+                <img class="embedimage" src="images/example_natural gas.png" alt="natural gas">
+                <img class="embedimage" src="images/example_natural gas_1.png" alt="natural gas 1">
+                <ul>
+                    <li>Continuous effect relation</li>
+                </ul>
+                <p class="examplesentence" style="text-align: center;"><span style="background-color: #A2FF9A;">Lower prices</span> <span
+                        style="background-color: #FFC99A;">due to</span> <span
+                        style="background-color: #A2FF9A;">legalization of drugs</span> will <span
+                        style="background-color: #FFC99A;">increase</span> <span
+                        style="background-color: #A2FF9A;">consumption</span>.
+                </p>
+                <img class="embedimage" src="images/example_legal.png" alt="legal drug">
+                <img class="embedimage" src="images/example_legal_1.png" alt="legal drug 1">
+                <p>&nbsp;</p>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="menu2"><br />
+            <br />
+            <p class="leftText">Example 1</p>
+            <video controls="controls" width="450" height="200" 
+            name="Video Name" src="videos/mturk_example_1.mov"></video>
+            <br /><br /><br />
+            <p class="leftText">Example 2</p>
+            <video controls="controls" width="450" height="200" 
+            name="Video Name" src="videos/mturk_example_2.mov"></video>
+            <br /><br /><br />
+        </div>
+
+        <div class="tab-pane fade" id="menu3">&nbsp;
+            <div><textarea cols="80" id="comments" name="comments"
+                    placeholder="Please leave a comment if you have any suggestions, questions or remarks"
+                    rows="6"></textarea></div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    var counter = 0;
+
+    function addRow() {
+        counter++;
+        document.querySelector('#addRelationDiv').insertAdjacentHTML(
+            'afterend',
+            '<div class="row" id=' + "row" + counter + ` style="p.outset {border-style: outset;}">
+                <span class="close" ><img class="close_img" src="images/close.png" class=""/></span>
+                <br>
+                <div class="class1">
+                    <strong> Concept 1 </strong>
+                    <input class="concept_input" type="text" name=`+ "concept1_" + counter + ` id="input1" size="7" placeholder="paste word(s) indicating concept 1" required/> 
+                </div>
+                <div class="class2">
+                    <strong>  Relation </strong> 
+                    <input type="text"  name=`+ "relation_" + counter + ` id="input2" size="7" placeholder="paste word(s) indicating relation" required />
+                    <div class="relationtype_outercontainer">
+                        <div class="relationtype_text"><span>Select relation type: &nbsp;&nbsp; </span></div>
+                        <div class="relationtype_container">
+                            <div class="relationtype_item">
+                                <input type="radio" name=`+ "effect_" + counter + ` value="positive" required> <strong>positive effect</strong> (promote / cause / lead to / increase) &nbsp;
+                            </div>
+                            <div class="relationtype_item">
+                                <input type="radio" name=`+ "effect_" + counter + ` value="negative" required> <strong>negative effect</strong> (surpress / stop / prevent / decrease)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="class3">
+                    <strong>  Concept 2 </strong>
+                    <input class="concept_input" type="text"  name=`+ "concept2_" + counter + ` id="input3" size="7" placeholder="paste word(s) indicating concept 2" required />
+                </div>
+               
+                <div id='EXEvents'>
+                    <br>
+                </div>
+                <br>
+            </div> 
+            `
+        )
+
+        $('#content').append(
+            '<script type="text/javascript" src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/jquery.min.js">  <\/script> <script type="text/javascript" src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/wikisummary.js">  <\/script> <link href="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/css/wikisummary.css" rel="stylesheet" /> <script src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/tippy.all.min.js">  <\/script> <script src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/jquery.nanoscroller.min.js"> <\/script> <script type="text/javascript">wikisummary.init();<\/script>'
+        );
+
+        $('.row .close').on('click', function () {
+            $(this).parent('div').remove();
+        });
+
+    }
+
+    function addFirstRelation() {
+        addRelation();
+        addRow();
+    }
+
+    function addRelation() {
+        document.querySelector('#content').insertAdjacentHTML(
+            'afterend',
+            `<div id="addRelationDiv" class="class4">
+                <input class="btn btn-add" id="addRelation" onclick="addRow()" value="Add More Relation" readonly/>
+            </div>`
+        )
+    }
+
+    function removeAddRelation() {
+        // remove all created div
+        for (i = 1; i <= counter; i++) {
+            if (document.contains(document.getElementById("row" + i))) {
+                document.getElementById("row" + i).remove();
+            }
+        }
+
+        // remove button
+        if (document.contains(document.getElementById("addRelationDiv"))) {
+            document.getElementById("addRelationDiv").remove();
+        }
+
+        // reset counter
+        counter = 0;
+    }
+
+    // check if at least one checkbox is checked
+    function changeRequire(elClass) {
+        el = document.getElementsByClassName(elClass);
+
+        var atLeastOneChecked = false;//at least one cb is checked
+        for (i = 0; i < el.length; i++) {
+            if (el[i].checked === true) {
+                atLeastOneChecked = true;
+                break;
+            }
+        }
+
+        if (atLeastOneChecked === true) {
+            for (i = 0; i < el.length; i++) {
+                el[i].required = false;
+            }
+        } else {
+            for (i = 0; i < el.length; i++) {
+                el[i].required = true;
+            }
+        }
+    }
+
+</script>
+<script type="text/javascript"
+    src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/jquery.min.js">  </script>
+<script type="text/javascript" src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/wikisummary.js">  </script>
+<link href="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/css/wikisummary.css" rel="stylesheet" />
+<script src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/tippy.all.min.js">  </script>
+<script src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/jquery.nanoscroller.min.js"> </script>
+<script type="text/javascript">
+    wikisummary.init();
+</script>
+<script type="text/javascript" src="https://s3.amazonaws.com/amt-arg/jqeasytooltip/jquery.js"></script>
+<script type="text/javascript" src="https://s3.amazonaws.com/amt-arg/jqeasytooltip/jqeasytooltip.v1.3.min.js"></script>
+<link href="https://s3.amazonaws.com/amt-arg/jqeasytooltip/css/jqeasytooltip.css" rel="stylesheet" type="text/css" />
+<link href="https://s3.amazonaws.com/amt-arg/jqeasytooltip/css/font-awesome.min.css" rel="stylesheet" type="text/css" />

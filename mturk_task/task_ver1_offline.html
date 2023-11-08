@@ -1,0 +1,633 @@
+<meta charset="utf-8" />
+<title></title>
+<meta content="width=device-width, initial-scale=1" name="viewport" />
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+    body {
+        font: normal 15px "Times New Roman", Times, serif
+    }
+
+        {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        list-style: none;
+    }
+
+    p.border {
+        border: 2px black;
+    }
+
+    p.outset {
+        border-style: outset;
+    }
+
+    .row {
+        border: 1px dashed #777 !important;
+        padding: 0 8px 20px 8px;
+        margin-bottom: 20px;
+    }
+
+    .close {
+        position: relative;
+        top: 8px;
+        right: 2px;
+        z-index: 100;
+        background-color: #a94442;
+        padding: 4px 2px 2px;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: .8;
+        text-align: center;
+        font-size: 23px;
+        line-height: 12px;
+        border-radius: 50%;
+    }
+
+    .tab button {
+        background-color: LightSlateGrey;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 20px 20px;
+        transition: 0.3s;
+        font-size: 17px;
+    }
+
+    .tab button:hover {
+        background-color: #708090;
+    }
+
+    .button {
+        background-color: #708090;
+        border: none;
+        color: white;
+        padding: 10px 22px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        transition: 0.5s;
+        outline: none;
+    }
+
+    input[type=text1] {
+        width: 55%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        transition: 0.5s;
+        outline: none;
+    }
+
+    input[type=text]:focus {
+        border: 3px solid #555;
+    }
+
+    body {
+        width: 100%;
+        float: left;
+    }
+
+    .class1 {
+        width: 30%;
+        float: left;
+        padding: 8px;
+    }
+
+    .class2 {
+        width: 40%;
+        float: left;
+        padding: 8px;
+    }
+
+    .class3 {
+        width: 30%;
+        float: left;
+        padding: 8px;
+    }
+
+    .class4 {
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+
+    p {
+        padding-top: 10px;
+        text-align: center;
+    }
+
+    .sentenceNumber{
+        text-align: left;
+    }
+
+    .sentence{
+        margin-top: 10px;
+        margin-bottom: 20px;
+    }
+
+    .box {
+        display: none;
+        width: 60%;
+    }
+
+    a:hover+.box,
+    .box:hover {
+        display: block;
+        position: absolute;
+        z-index: 50;
+    }
+
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+    }
+
+    .btn-add {
+        color: #212529;
+        background-color: #ffc107;
+        border: none;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-bottom: 12px !important;
+    }
+
+
+    .btn-add:active,
+    .btn-add:hover,
+    .btn-add:focus {
+        color: #212529 !important;
+        outline: none !important;
+    }
+
+    .concept_input {
+        margin-bottom: 12px !important;
+    }
+
+    .orderlist{
+        text-align: justify;
+    }
+
+    .examplecheck{
+        font-weight: 500 !important;
+    }
+
+    .embedimage{
+        max-width: 90%;
+        margin-bottom: 12px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .examplesentence{
+        font-size: 21px;
+    }
+
+</style>
+<div class="container">
+    <h2>Identify &#39;+/- Effect&#39; relation in a given sentence!</h2>
+
+    <p>&nbsp;</p>
+
+    <h4>If this is your first HIT, please, read the task description and the examples carefully before working on the
+        task!<br />
+        We will validate your submission base on our requirement.<br />
+    </h4>
+
+    <p>&nbsp;</p>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#task">Task</a></li>
+        <li><a data-toggle="tab" href="#menu1">Description</a></li>
+        <li><a data-toggle="tab" href="#menu2">Examples</a></li>
+        <li><a data-toggle="tab" href="#menu3">Comments</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane fade in active" id="task">
+            <p class="sentenceNumber">Sentence ${Number}:</p>
+            <h3 class="sentence">${Sentence}</h3>
+            <label for="chkYes"><input id="chkYes" name="detect" onchange="addFirstRelation()" required="" type="radio"
+                    value="Relation" /> There is a &#39;+/- Effect&#39; Relation </label><br />
+            <label for="chkNo"><input id="chkNo" name="detect" onchange="removeAddRelation()" required="" type="radio"
+                    value="NoRelation" /> There is no &#39;+/- Effect&#39; Relation </label><br />
+            <label for="chkNoisy"><input id="chkNoisy" name="detect" onchange="removeAddRelation()" required=""
+                    type="radio" value="NoisySentence" /> I could not tell if there is relation or not </label><br />
+            </br>
+            <input type="checkbox" id="chkError"/>
+            <label for="chkError" name="ifErrorSentence" value="ErrorSentence" >I think there is some issue with the sentence, e.g. missing or wrong information, grammatical errors</label><br /> 
+            <div id="content">&nbsp;</div>
+        </div>
+        <!--script>showconcept3();</script-->
+
+        <div class="tab-pane fade" id="menu1">
+            <div style="max-width: 770px;">
+                <p class="orderlist">1.<strong> Identify</strong> if a sentence contains <span style="background-color: #FFC99A;">an effect relation</span> between different <span style="background-color: #A2FF9A;">concepts</span> mentioned in the sentence. </p>
+                <p class="orderlist">&nbsp; &nbsp; &nbsp;Example:</p>
+                <p class="examplesentence" style="text-align: center;"><span style="background-color: #A2FF9A;">Social media</span> <span
+                        style="background-color: #FFC99A;">helps to nurture</span> your <span
+                        style="background-color: #A2FF9A;">relationships</span>.</p>
+                <p class="orderlist">2. <strong>Concept</strong>: a phrase that expresses an entity (<em>Donald Trump</em>), event
+                    (<em>smoking in streets</em>), or an abstract principle/idea (<em>society</em>).</p>
+                <ul>
+                    <li>One concept may comprise more than one entity.</li>
+                </ul>
+                <p class="orderlist">&nbsp; &nbsp; &nbsp; Example: the concept &ldquo;<span style="background-color: #A2FF9A;">legalization of
+                        drugs</span>&rdquo; contains 2 entities:</p>
+                    &nbsp; &nbsp; &nbsp; 
+                    <input checked="checked" type="checkbox"/>
+                    <label class="examplecheck" > &nbsp; legalization</label><br /> 
+                    &nbsp; &nbsp; &nbsp; 
+                    <input checked="checked" type="checkbox"/>
+                    <label class="examplecheck" > &nbsp; drugs</label></p>
+                <ul>
+                    <li>The entity(s) should embrace the concept as concise as possible.</li>
+                </ul>
+                <p class="examplesentence" >Participating in the playing of <span style="background-color: #A2FF9A;">violent video games</span> by
+                    children and youth <span style="background-color: #FFC99A;">increase</span> <span
+                        style="background-color: #A2FF9A;">aggressive thought and behavior</span>.</p>
+                <img class="embedimage" src="images/example_videogame.png" alt="video game">
+                <p class="orderlist">3. <strong>Effect relation types</strong>: there could be two relation types between concept 1 and
+                    concept 2.</p>
+                <img class="embedimage" src="images/pos_relation.png" alt="pos rel">
+                <img class="embedimage" src="images/neg_relation.png" alt="neg rel">
+                <p class="orderlist">4. <strong>Complex effect relation</strong>: A compound-complex sentence may include multiple effect
+                    relations.</p>
+                <ul>
+                    <li>Parallel effect relation</li>
+                </ul>
+                <p class="examplesentence" style="text-align: center;"><span style="background-color: #A2FF9A;">Social media</span> can <span
+                        style="background-color: #FFC99A;">fuel</span> <span
+                        style="background-color: #A2FF9A;">anxiety</span> and <span
+                        style="background-color: #A2FF9A;">depression</span>.
+                </p>
+                <img class="embedimage" src="images/example_social media.png" alt="social media">
+                <img class="embedimage" src="images/example_social media_1.png" alt="social media 1">
+                <ul>
+                    <li>Opposite effect relation</li>
+                </ul>
+                <p class="examplesentence" style="text-align: center;"><span style="background-color: #A2FF9A;">Natural gas</span> will <span
+                        style="background-color: #FFC99A;">lower</span> <span style="background-color: #A2FF9A;">fossil fuel
+                        prices</span> and <span style="background-color: #FFC99A;">increase</span> <span
+                        style="background-color: #A2FF9A;">consumption</span>.
+                </p>
+                <img class="embedimage" src="images/example_natural gas.png" alt="natural gas">
+                <img class="embedimage" src="images/example_natural gas_1.png" alt="natural gas 1">
+                <ul>
+                    <li>Continuous effect relation</li>
+                </ul>
+                <p class="examplesentence" style="text-align: center;"><span style="background-color: #A2FF9A;">Lower prices</span> <span
+                        style="background-color: #FFC99A;">due to</span> <span
+                        style="background-color: #A2FF9A;">legalization of drugs</span> will <span
+                        style="background-color: #FFC99A;">increase</span> <span
+                        style="background-color: #A2FF9A;">consumption</span>.
+                </p>
+                <img class="embedimage" src="images/example_legal.png" alt="legal drug">
+                <img class="embedimage" src="images/example_legal_1.png" alt="legal drug 1">
+                <p>&nbsp;</p>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="menu2"><br />
+            <br />
+            <img src="https://s3.amazonaws.com/amt-arg/NoRelation.png" style="padding:1px;border:thin solid black;"
+                width="700" /><br />
+            <br />
+            <img src="https://s3.amazonaws.com/amt-arg/POSBAD.png" style="padding:1px;border:thin solid black;"
+                width="700" /><br />
+            <br />
+            <img src="https://s3.amazonaws.com/amt-arg/NEGBAD.png" style="padding:1px;border:thin solid black;"
+                width="700" /><br />
+            <br />
+            <img src="https://s3.amazonaws.com/amt-arg/POSGOOD.png" style="padding:1px;border:thin solid black;"
+                width="700" /><br />
+            &nbsp;</div>
+
+        <div class="tab-pane fade" id="menu3">&nbsp;
+            <div><textarea cols="80" id="comments" name="comments"
+                    placeholder="Please leave a comment if you have any suggestions, questions or remarks"
+                    rows="6"></textarea></div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    var counter = 0;
+
+    function addRow() {
+        counter++;
+        document.querySelector('#addRelationDiv').insertAdjacentHTML(
+            'afterend',
+            '<div class="row" id=' + "row" + counter + ` style="p.outset {border-style: outset;}">
+                <span class="close">&times;</span>
+                <br>
+                <div class="class1">
+                    <strong> Concept 1 </strong>
+                    <input class="concept_input" type="text" name=`+ "concept1_" + counter + ` id="input1" size="7" placeholder="paste word(s) indicating concept 1" required/> 
+                    <span>Select entity(s) capturing concept 1: <span/> <br/><br/>
+                    <div id=`+ "checkboxes1_" + counter + ` class="checkbox-group required"></div>
+                </div>
+                <div class="class2">
+                    <strong>  Relation </strong> 
+                    <input type="text"  name=`+ "relation_" + counter + ` id="input2" size="7" placeholder="paste word(s) indicating relation" required />
+                    <span>Select relation type: &nbsp;&nbsp; <span/>
+                    <input type="radio" name=`+ "effect_" + counter + ` value="positive" required> <strong>positive effect</strong> &nbsp;
+                    <input type="radio" name=`+ "effect_" + counter + ` value="negative" required> <strong>negative effect</strong> 
+                </div>
+                <div class="class3">
+                    <strong>  Concept 2 </strong>
+                    <input class="concept_input" type="text"  name=`+ "concept2_" + counter + ` id="input3" size="7" placeholder="paste word(s) indicating concept 2" required />
+                    <span>Select entity(s) capturing concept 2: <span/> <br/><br/>
+                    <div id=`+ "checkboxes2_" + counter + ` class="checkbox-group required"> </div>
+                </div>
+               
+                <div id='EXEvents'>
+                    <br>
+                </div>
+                <br>
+            </div> 
+            `
+        )
+
+        var ConceptsAvailable = document.getElementById("checkboxes1_" + counter);
+        var ConceptsAvailable1 = document.getElementById("checkboxes2_" + counter);
+        var check_value = "${Concepts}".split("|");
+        var links = "${Links}".split("|");
+        //console.log(check_value);
+
+        var concept, concept1, p, p1, n, n1, s, s1, br, br1, fields, entity, synset;
+
+        for (var count in check_value) {
+
+            if (check_value[count]) { // not using this
+
+                if (check_value[count].includes(";;bn:")) { //not sure what is happening here
+
+                    fields = check_value[count].split(';;');
+                    entity = fields[0];
+                    synset = fields[1];
+
+                    concept = document.createElement("input");
+                    concept.value = entity;
+                    concept.type = "checkbox";
+                    concept.name = "concept1_entities";
+                    concept.id = "concept1_entities";
+
+                    concept1 = document.createElement("input");
+                    concept1.value = entity;
+                    concept1.type = "checkbox";
+                    concept1.name = "concept2_entities";
+                    concept1.id = "concept2_entities";
+
+                    //<strong class="jqeasytooltip" data-tipcontent="<iframe src='https://babelnet.org'></iframe>"> TEST ME!! </strong>
+
+
+                    p = document.createElement("span");
+                    p.className = 'jqeasytooltip';
+                    p.setAttribute("data-tiptheme", "tipthemesquarecustom2");
+                    p.setAttribute("data-tipposition", "tipright");
+                    p.setAttribute("data-tipfollowcursor", "false");
+                    p.setAttribute("data-tipmaxwidth", "300");
+                    p.setAttribute("data-tipcontent", "<iframe src='https://babelnet.org/synset?word=" + synset + "&lang=EN&langTrans=EN#word-intro'></iframe>");
+                    //p.innerHTML = entity+ "<div class='box'> yessssss <iframe src='https://babelnet.org/synset?word="+synset+"&lang=EN&langTrans=EN#word-intro' width ='600px' height = '200px'></iframe></div> <a href='https://babelnet.org/synset?word="+synset+"&lang=EN&langTrans=EN' target='_blank'><i>def-link</i> </a>";
+                    p.innerHTML = entity + "&nbsp;<a href='https://babelnet.org/synset?word=" + synset + "&lang=EN&langTrans=EN' target='_blank'><i>def-link</i> </a>";
+                    br = document.createElement("br");
+                    s = document.createElement("span");
+                    s.innerHTML = '&nbsp;'
+
+                    p1 = document.createElement("span");
+                    p1.innerHTML = entity + " <a href='https://babelnet.org/synset?word=" + synset + "&lang=EN&langTrans=EN' target='_blank'><i>def-link</i> </a>";
+                    br1 = document.createElement("br");
+                    s1 = document.createElement("span");
+                    s1.innerHTML = '&nbsp;'
+
+                    ConceptsAvailable.appendChild(concept);
+                    ConceptsAvailable.appendChild(s);
+                    ConceptsAvailable.appendChild(p);
+                    ConceptsAvailable.appendChild(br);
+
+
+                    ConceptsAvailable1.appendChild(concept1);
+                    ConceptsAvailable1.appendChild(s1);
+                    ConceptsAvailable1.appendChild(p1);
+                    ConceptsAvailable1.appendChild(br1);
+                }
+
+                else {
+                    
+                    concept = document.createElement("input");
+                    concept.value = check_value[count];
+                    concept.type = "checkbox";
+                    concept.name = "concept1_entities_" + counter;
+                    concept.className = "concept1_entities_" + counter;
+                    concept.onchange = function () {
+                        changeRequire(concept.className);
+                    };
+
+                    //concept.oninvalid = concept.setCustomValidity('Please choose the entity(s) that describe the concept.');
+                    concept.required = true;
+
+                    concept1 = document.createElement("input");
+                    concept1.value = check_value[count];
+                    concept1.type = "checkbox";
+                    concept1.name = "concept2_entities_" + counter;
+                    concept1.className = "concept2_entities_" + counter;
+                    concept1.onchange = function () {
+                        changeRequire(concept1.className);
+                    };
+                    //concept1.oninvalid = concept1.setCustomValidity('Please choose the entity(s) that describe the concept.');
+                    concept1.required = true;
+
+
+                    p = document.createElement("span");
+                    p.className = 'wikisummary';
+                    p.setAttribute("data-theme", "light");
+                    p.innerHTML = check_value[count];
+                    n = document.createElement("span");
+                    n.innerHTML = "<a href='https://en.wikipedia.org/wiki/ " + check_value[count] + "' target='_blank'><i> wiki-link</i> </a>";
+                    d = document.createElement("span");
+                    d.innerHTML = "<a href='" + links[count] + "'><i> dbpedia-link </i> </a>";
+                    br = document.createElement("br");
+                    s = document.createElement("span");
+                    s.innerHTML = '&nbsp;'
+
+
+
+                    p1 = document.createElement("span");
+                    p1.className = 'wikisummary';
+                    p1.setAttribute("data-theme", "light");
+                    p1.innerHTML = check_value[count];
+                    n1 = document.createElement("span");
+                    n1.innerHTML = "<a href='https://en.wikipedia.org/wiki/ " + check_value[count] + "' target='_blank'><i> wiki-link</i> </a>";
+                    d1 = document.createElement("span");
+                    d1.innerHTML = "<a href='" + links[count] + "'><i> dbpedia-link </i> </a>";
+                    br1 = document.createElement("br");
+                    s1 = document.createElement("span");
+                    s1.innerHTML = '&nbsp;'
+
+                    ConceptsAvailable.appendChild(concept);
+                    ConceptsAvailable.appendChild(s);
+                    ConceptsAvailable.appendChild(p);
+                    ConceptsAvailable.appendChild(n);
+                    ConceptsAvailable.appendChild(d);
+                    ConceptsAvailable.appendChild(br);
+
+
+                    ConceptsAvailable1.appendChild(concept1);
+                    ConceptsAvailable1.appendChild(s1);
+                    ConceptsAvailable1.appendChild(p1);
+                    ConceptsAvailable1.appendChild(n1);
+                    ConceptsAvailable1.appendChild(d1);
+                    ConceptsAvailable1.appendChild(br1);
+
+
+                }
+            }
+        }
+
+        //add a checkbox saying no entity(s) describe the concept
+        {
+            // checkbox
+            concept = document.createElement("input");
+            concept.value = "no_entity";
+            concept.type = "checkbox";
+            concept.name = "concept1_entities_" + counter;
+            concept.className = "concept1_entities_" + counter;
+            concept.onchange = function () {
+                changeRequire(concept.className);
+            };
+
+            concept.required = true;
+
+            concept1 = document.createElement("input");
+            concept1.value = "no_entity";
+            concept1.type = "checkbox";
+            concept1.name = "concept2_entities_" + counter;
+            concept1.className = "concept2_entities_" + counter;
+            concept1.onchange = function () {
+                changeRequire(concept1.className);
+            };
+            
+            concept1.required = true;
+            ConceptsAvailable.appendChild(concept);
+            ConceptsAvailable1.appendChild(concept);
+
+            // label with checkbox 
+            p = document.createElement("span");
+            p.setAttribute("data-theme", "light");
+            p.innerHTML = "&nbsp; missing entity(s)";
+
+            p1 = document.createElement("span");
+            p1.setAttribute("data-theme", "light");
+            p1.innerHTML = "&nbsp; missing entity(s)";
+
+            ConceptsAvailable.appendChild(concept);
+            ConceptsAvailable.appendChild(p);
+            ConceptsAvailable1.appendChild(concept1);
+            ConceptsAvailable1.appendChild(p1);
+
+        }
+        
+        $('#content').append(
+            '<script type="text/javascript" src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/jquery.min.js">  <\/script> <script type="text/javascript" src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/wikisummary.js">  <\/script> <link href="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/css/wikisummary.css" rel="stylesheet" /> <script src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/tippy.all.min.js">  <\/script> <script src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/jquery.nanoscroller.min.js"> <\/script> <script type="text/javascript">wikisummary.init();<\/script>'
+        );
+
+        $('.row .close').on('click', function () {
+            $(this).parent('div').remove();
+        });
+
+    }
+
+    function addFirstRelation() {
+        addRelation();
+        addRow();
+    }
+
+    function addRelation() {
+        document.querySelector('#content').insertAdjacentHTML(
+            'afterend',
+            `<div id="addRelationDiv" class="class4">
+                <input class="btn btn-add" id="addRelation" onclick="addRow()" value="Add More Relation" readonly/>
+            </div>`
+        )
+    }
+
+    function removeAddRelation() {
+        // remove all created div
+        for (i = 1; i <= counter; i++) {
+            if (document.contains(document.getElementById("row" + i))) {
+                document.getElementById("row" + i).remove();
+            }
+        }
+
+        // remove button
+        if (document.contains(document.getElementById("addRelationDiv"))) {
+            document.getElementById("addRelationDiv").remove();
+        }
+
+        // reset counter
+        counter = 0;
+    }
+
+    // check if at least one checkbox is checked
+    function changeRequire(elClass) {
+        el = document.getElementsByClassName(elClass);
+
+        var atLeastOneChecked = false;//at least one cb is checked
+        for (i = 0; i < el.length; i++) {
+            if (el[i].checked === true) {
+                atLeastOneChecked = true;
+                break;
+            }
+        }
+
+        if (atLeastOneChecked === true) {
+            for (i = 0; i < el.length; i++) {
+                el[i].required = false;
+            }
+        } else {
+            for (i = 0; i < el.length; i++) {
+                el[i].required = true;
+            }
+        }
+    }
+
+</script>
+<script type="text/javascript"
+    src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/jquery.min.js">  </script>
+<script type="text/javascript" src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/wikisummary.js">  </script>
+<link href="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/css/wikisummary.css" rel="stylesheet" />
+<script src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/tippy.all.min.js">  </script>
+<script src="https://s3.amazonaws.com/amt-arg/wikitoolup/assets/js/vendor/jquery.nanoscroller.min.js"> </script>
+<script type="text/javascript">
+    wikisummary.init();
+</script>
+<script type="text/javascript" src="https://s3.amazonaws.com/amt-arg/jqeasytooltip/jquery.js"></script>
+<script type="text/javascript" src="https://s3.amazonaws.com/amt-arg/jqeasytooltip/jqeasytooltip.v1.3.min.js"></script>
+<link href="https://s3.amazonaws.com/amt-arg/jqeasytooltip/css/jqeasytooltip.css" rel="stylesheet" type="text/css" />
+<link href="https://s3.amazonaws.com/amt-arg/jqeasytooltip/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
